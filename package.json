@@ -1,0 +1,14 @@
+{
+  "name": "security_showcase",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jessica Contreras, Carlos Lopez",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.74.0"
+  }
+}
