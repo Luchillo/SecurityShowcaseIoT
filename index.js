@@ -1,5 +1,5 @@
-var request = require('request');
-var sensorLib = require('node-dht-sensor');
+const request = require('request');
+const sensorLib = require('node-dht-sensor');
 
 // Read from sensor & send to Dweet.io
 class SensorClass {
@@ -30,8 +30,9 @@ class SensorClass {
       uri: 'https://api.thingspeak.com/channels/149656',
       method: 'PUT',
       json: {
-        name: 'Antitheft Showcase',
-        api_key: this.key
+        api_key: this.key,
+        field1: temperature,
+        field2: humidity
       }
     }, (err, res, body) => {
       console.log(err, body);
