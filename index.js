@@ -10,17 +10,17 @@ class SensorClass {
     this.sensor = sensor;
     this.client = client;
 
-    if (sensor.initialize(11, 4)) {
-      setInterval(() => this.read(), 1000);
-    } else {
-      console.error('Error initializing sensor');
-    }
-
     this.client.attachChannel(this.channelId, {
       writeKey: this.key
     }, (err, res, body) => {
       console.log(err, body);
     });
+
+    if (sensor.initialize(11, 4)) {
+      setInterval(() => this.read(), 1000);
+    } else {
+      console.error('Error initializing sensor');
+    }
   }
 
   read() {
