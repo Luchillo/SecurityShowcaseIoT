@@ -1,5 +1,5 @@
-const request = require('request');
-const sensorLib = require('node-dht-sensor');
+var request = require('request');
+var sensorLib = require('node-dht-sensor');
 
 // Read from sensor & send to Dweet.io
 class SensorClass {
@@ -41,4 +41,4 @@ class SensorClass {
 
 let sensor = new SensorClass(sensorLib, request);
 
-sensor.read()
+sensor.read();
