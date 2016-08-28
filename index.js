@@ -1,18 +1,23 @@
-const request = require('request');
+const ThingSpeakClient = require('thingspeakclient');
+const client = new ThingSpeakClient();
 const sensorLib = require('node-dht-sensor');
 
 // Read from sensor & send to Dweet.io
 class SensorClass {
-  constructor(sensor, request) {
+  constructor(sensor, client) {
     this.key = 'CX79NXA1V6VZMC06';
     this.sensor = sensor;
-    this.request = request;
+    this.client = client;
 
     if (sensor.initialize(11, 4)) {
       setInterval(() => this.read(), 1000);
     } else {
       console.error('Error initializing sensor');
     }
+
+    this.client.attachChannel(149656, {writeKey: this.key}, (err, res, body) => {
+      console.log(err, body);
+    });
   }
 
   read() {
@@ -26,20 +31,18 @@ class SensorClass {
       console.log();
     }
 
-    request({
-      uri: 'https://api.thingspeak.com/channels/149656.json',
-      method: 'PUT',
-      json: {
-        api_key: this.key,
-        field1: temperature,
-        field2: humidity
+    client.updateChannel(this.key, {
+      field1: temperature,
+      field2: humidity
+    }, (err, resp) => {
+      if (!err && resp > 0) {
+        return console.log('update successfully. Entry number was: ' + resp);
       }
-    }, (err, res, body) => {
-      console.log(err, body);
+      console.log(err);
     });
   }
 }
 
-let sensor = new SensorClass(sensorLib, request);
+let sensor = new SensorClass(sensorLib, client);
 
 sensor.read();
