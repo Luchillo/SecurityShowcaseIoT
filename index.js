@@ -34,7 +34,7 @@ class SensorClass {
         api_key: this.key
       }
     }, (err, res, body) => {
-      console.log(err, res, body);
+      console.log(err, body);
     });
   }
 }
