@@ -1,5 +1,5 @@
 const ThingSpeakClient = require('thingspeakclient');
-const client = new ThingSpeakClient();
+const client = new ThingSpeakClient({updateTimeout: 500});
 const sensorLib = require('node-dht-sensor');
 
 // Read from sensor & send to Dweet.io
@@ -17,7 +17,7 @@ class SensorClass {
     });
 
     if (sensor.initialize(11, 4)) {
-      setInterval(() => this.read(), 5000);
+      setInterval(() => this.read(), 1000);
     } else {
       console.error('Error initializing sensor');
     }
