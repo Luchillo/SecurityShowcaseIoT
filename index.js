@@ -17,7 +17,7 @@ class SensorClass {
     });
 
     if (sensor.initialize(11, 4)) {
-      setInterval(() => this.read(), 5000);
+      setInterval(() => this.read(), 15000);
     } else {
       console.error('Error initializing sensor');
     }
