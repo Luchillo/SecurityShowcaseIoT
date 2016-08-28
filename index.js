@@ -27,7 +27,7 @@ class SensorClass {
     }
 
     request({
-      uri: 'https://api.thingspeak.com/channels/149656',
+      uri: 'https://api.thingspeak.com/channels/149656.json',
       method: 'PUT',
       json: {
         api_key: this.key,
