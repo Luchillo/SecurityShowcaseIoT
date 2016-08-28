@@ -31,7 +31,7 @@ class SensorClass {
     console.log('Temperature: ' + temperature + 'C, ' +
       'humidity: ' + humidity + '%');
     if (temperature > 29) {
-      console.log();
+      console.log('Too high temperature');
     }
 
     this.client.updateChannel(this.channelId, {
