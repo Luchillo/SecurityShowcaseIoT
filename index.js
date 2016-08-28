@@ -5,7 +5,7 @@ const sensorLib = require('node-dht-sensor');
 // Read from sensor & send to Dweet.io
 class SensorClass {
   constructor(sensor, client) {
-    this.key = 'CX79NXA1V6VZMC06';
+    this.key = 'CX79NXA1V6VZMCO6';
     this.channelId = 149656;
     this.sensor = sensor;
     this.client = client;
@@ -41,7 +41,7 @@ class SensorClass {
       if (!err && resp > 0) {
         return console.log('update successfully. Entry number was: ' + resp);
       }
-      console.log(err);
+      console.log('Error: ', err);
     });
   }
 }
