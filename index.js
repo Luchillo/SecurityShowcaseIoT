@@ -6,6 +6,7 @@ const sensorLib = require('node-dht-sensor');
 class SensorClass {
   constructor(sensor, client) {
     this.key = 'CX79NXA1V6VZMC06';
+    this.channelId = 149656;
     this.sensor = sensor;
     this.client = client;
 
@@ -15,7 +16,9 @@ class SensorClass {
       console.error('Error initializing sensor');
     }
 
-    this.client.attachChannel(149656, {writeKey: this.key}, (err, res, body) => {
+    this.client.attachChannel(this.channelId, {
+      writeKey: this.key
+    }, (err, res, body) => {
       console.log(err, body);
     });
   }
@@ -31,7 +34,7 @@ class SensorClass {
       console.log();
     }
 
-    client.updateChannel(this.key, {
+    this.client.updateChannel(this.channelId, {
       field1: temperature,
       field2: humidity
     }, (err, resp) => {
